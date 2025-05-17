@@ -43,37 +43,38 @@ navigation_commands = {}
 # print("Loading vosk model and processor...")
 
 
-MODEL_URL = "https://alphacephei.com/vosk/models/vosk-model-en-in-0.5.zip"
-MODEL_DIR = "Models"
-MODEL_NAME = "vosk-model-en-in-0.5"
-MODEL_PATH = os.path.join(MODEL_DIR, MODEL_NAME)
+# MODEL_URL = "https://alphacephei.com/vosk/models/vosk-model-en-in-0.5.zip"
+# MODEL_DIR = "Models"
+# MODEL_NAME = "vosk-model-en-in-0.5"
+# MODEL_PATH = os.path.join(MODEL_DIR, MODEL_NAME)
 
-def download_and_extract_model():
-    if not os.path.exists(MODEL_PATH):
-        os.makedirs(MODEL_DIR, exist_ok=True)
-        zip_path = os.path.join(MODEL_DIR, f"{MODEL_NAME}.zip")
+# def download_and_extract_model():
+#     if not os.path.exists(MODEL_PATH):
+#         os.makedirs(MODEL_DIR, exist_ok=True)
+#         zip_path = os.path.join(MODEL_DIR, f"{MODEL_NAME}.zip")
 
-        print("Downloading Vosk model...")
-        with requests.get(MODEL_URL, stream=True) as r:
-            r.raise_for_status()
-            with open(zip_path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
+#         print("Downloading Vosk model...")
+#         with requests.get(MODEL_URL, stream=True) as r:
+#             r.raise_for_status()
+#             with open(zip_path, "wb") as f:
+#                 for chunk in r.iter_content(chunk_size=8192):
+#                     f.write(chunk)
 
-        print("Extracting Vosk model...")
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(MODEL_DIR)
+#         print("Extracting Vosk model...")
+#         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+#             zip_ref.extractall(MODEL_DIR)
 
-        os.remove(zip_path)
-        print("Model ready.")
+#         os.remove(zip_path)
+#         print("Model ready.")
 
-    else:
-        print("Model already exists, skipping download.")
+#     else:
+#         print("Model already exists, skipping download.")
 
-# Call this at server start
-download_and_extract_model()
+# # Call this at server start
+# download_and_extract_model()
 
 # Load model
+MODEL_PATH=""
 vosk_model = VoskModel(MODEL_PATH)
 
 
